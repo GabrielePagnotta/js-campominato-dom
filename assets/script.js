@@ -1,94 +1,84 @@
-// -VARIABILI-
-let grid = document.getElementById('main');
-let x = 0;
+let Bomb = [];
+
+let score = 0;
+
+function Play() {
+    //reload
+    Bomb = [];
+    score = 0;
+    let table = document.getElementById("grid");
+    table.innerHTML = '';
+    document.getElementById("points").innerHTML = `il punteggio è ${score}`
+    //take the option from the html
+    let option = document.getElementById("selection").value;
+    console.log(option);
+    switch (option) {
+        case "1":
+            console.log("creation 10x10 table");
+            createTable(100, "sq10");
+            break;
+        case "2":
+            createTable(81, "sq9");
+            break;
+        case "3":
+            createTable(49, "sq7")
+            break;
+    }
+}
 
 
-// -FUNZIONI-
-function squares() {
-    let div = document.createElement('div');
-    div.classList.add('quadrato');
-    let num = div.innerText = x += 1
+function createTable(n_square, style) {
+    //make a node/connection with the grid
+    const table = document.getElementById("grid");
+    //create an array with the bomb in random position
+    createArray(n_square);
 
+    //creation square by square
+    for (let i = 1; i <= n_square; i++) {
+        //function that create a single square
+        console.log(style);
+        let instant_square = singleSquare(style, i);
+        //select item
+        instant_square.addEventListener("click", function () {
+            console.log(this);
+            if (Bomb.includes(parseInt(this.innerHTML))) {
+                this.classList.toggle('bomb');
+                this.innerHTML = "boom";
+                alert("Hai perso!!! il tuo punteggio è: " + score);
+                location.reload();
+            } else {
+                if (!this.classList.contains('active')) {
+                    this.classList.add('active');
+                    score++;
+                    document.getElementById("points").innerHTML = `il punteggio è ${score}`
+                }
+
+            }
+        })
+        table.append(instant_square);
+    }
+}
+
+
+
+
+
+function singleSquare(style, count) {
+    const div = document.createElement('div');
+    div.classList.add(style);
+    div.innerHTML = count;
     return div;
 }
 
-function squares_1() {
-    let div = document.createElement('div');
-    div.classList.add('quadrato_int');
-    let num = div.innerText = x += 1
 
-    return div;
+function createArray(n) {
+    for (let i = 0; i < 16; i++) {
+        let randomBomb = Math.round(Math.random() * (n + 1));
+        if (Bomb.includes(randomBomb)) {
+            i--;
+        } else {
+            Bomb.push(randomBomb);
+        }
+    }
+    console.log(Bomb);
 }
-
-function squares_2() {
-    let div = document.createElement('div');
-    div.classList.add('quadrato_dif');
-    let num = div.innerText = x += 1
-
-    return div;
-}
-
-
-
-// -EVENTO-
-btn.addEventListener('click', function () {
-    let level = document.getElementById('difficulty').value;
-
-
-    if (level == "facile") {
-
-        for (let i = 0; i < 100; i++) {
-
-            let quadrati = squares();
-
-                quadrati.addEventListener('click', function () {
-                this.classList.toggle('background');
-            })
-
-
-            grid.append(quadrati)
-        }
-
-
-    }
-
-    else if (level == "intermedio") {
-
-
-        for (let i = 0; i < 81; i++) {
-
-            let quadrati = squares_1();
-
-                quadrati.addEventListener('click', function () {
-                this.classList.toggle('background');
-            })
-
-
-            grid.append(quadrati)
-        }
-
-
-
-
-    }
-
-
-    else {
-        for (let i = 0; i < 49; i++) {
-
-            let quadrati = squares_2();
-
-                quadrati.addEventListener('click', function () {
-                this.classList.toggle('background');
-            })
-
-
-            grid.append(quadrati)
-        }
-
-    }
-
-}, {once : true});
-
-
-

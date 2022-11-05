@@ -1,33 +1,127 @@
-.image {
-    width: 100px;
-    height: 100px;
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-.quadrato {
-    width: calc(100% / 10);
-    height: 100px;
-    aspect-ratio: 1/1;
+
+body{
+    width: 100vw;
+    height: 100vh;
+}
+
+
+/*************************
+         NAVBAR
+***********************+*/
+
+.navbar,
+.pingu
+{
+    width: 80%;
+    margin: auto;
+}
+
+.navbar{
+    height: 10vh;
+    display: flex;
+}
+
+
+
+/*************************
+         BUTTON
+***********************+*/
+
+button{
+    border: none;
+    padding: 5px 25px 5px 25px;
+    border-radius: 5px;
+    background-color: gold;
+}
+
+button:hover{
+    background-color: rgb(182, 158, 18);
+}
+
+
+/*************************
+         GRID
+***********************+*/
+
+.pingu{
+    height: auto;
+    width: 70vh;
+}
+
+#grid{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center ;
+}
+
+
+/*************************
+         SQUARE
+***********************+*/
+
+.sq10,
+.sq9,
+.sq7
+{
     border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-
-.quadrato_int {
-    width: calc(100% / 9);
-    height: 100px;
+.sq10{
+    width: calc( 100% / 10 );
     aspect-ratio: 1/1;
-    border: 1px solid black;
 }
 
-.quadrato_dif {
-    width: calc(100% / 7);
-    height: 100px;
+.sq9{
+    width: calc( 100% / 9 );
     aspect-ratio: 1/1;
-    border: 1px solid black;
+}
+
+.sq7{
+    width: calc( 100% / 7 );
+    aspect-ratio: 1/1;
+}
+
+/*************************
+      ACTIVE & BOMB
+***********************+*/
+
+.active{
+    background-color: lightblue;
+}
+
+.bomb{
+    background-color: rgb(236, 65, 65);
 }
 
 
+/*************************
+         MAIN
+***********************+*/
 
-.background {
-    background-color: aquamarine;
-    border: 1px solid red;
+main{
+    background-color: rgb(190, 247, 228);
+    height: auto;
 }
+
+
+/*************************
+         FOOTER
+***********************+*/
+
+footer{
+    height: 10vh;
+    text-align: center;
+    margin-top: 2rem;
+}
+
